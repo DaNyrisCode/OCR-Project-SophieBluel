@@ -162,7 +162,7 @@ nav li {
   
     .filter-group {
       display: inline-flex;
-      gap: 15px;
+      gap: 10px;
     }
   
     .filter-btn {
@@ -196,6 +196,7 @@ nav li {
 
   img {
     width: 100%;
+    cursor: pointer;
   }
   figcaption {
     font-size: 13px;

@@ -141,7 +141,7 @@ nav li img {
 }
 #filters .filter-group {
   display: inline-flex;
-  gap: 15px;
+  gap: 10px;
 }
 #filters .filter-btn {
   font-family: "Syne";
@@ -171,6 +171,7 @@ nav li img {
 }
 .gallery img {
   width: 100%;
+  cursor: pointer;
 }
 .gallery figcaption {
   font-size: 13px;

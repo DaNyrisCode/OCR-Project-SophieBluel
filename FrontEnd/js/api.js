@@ -1,11 +1,12 @@
+// Récupération des Projets
 const getDataFromApi = async() => {
     const response = await fetch("http://localhost:5678/api/works");
-    const json = await response.json();
-    myProjects(json);
+    const worksJson = await response.json();
+    myProjects(worksJson);
 }
 getDataFromApi();
 
-// Récupération des Projets
+// Injection HTML des Projets
 const myProjects = (works) => {
     const gallery = document.querySelector('.gallery');
     gallery.innerHTML = '';
@@ -30,3 +31,31 @@ const myProjects = (works) => {
         gallery.appendChild(figure);
     });
 };
+
+// Récupération des Catégories
+const getCategoriesFromApi = async() => {
+    const response = await fetch("http://localhost:5678/api/categories");
+    const categoriesJson = await response.json();
+    filters(categoriesJson);
+}
+
+// Injection des filtres
+const filters = (categories) => {
+    const filterGroup = document.querySelector('.filter-group');
+
+    // Bouton par defaut
+    const allBtn = document.createElement('button');
+    allBtn.classList.add('filter-btn', 'active');
+    allBtn.textContent = 'Tous';
+    filterGroup.appendChild(allBtn);
+
+    // Boutons par Catégories
+    categories.forEach(category => {
+        const filterBtn = document.createElement('button');
+        filterBtn.classList.add('filter-btn');
+        filterBtn.textContent = category.name;
+        filterGroup.appendChild(filterBtn);
+    });
+}
+getCategoriesFromApi();
+
