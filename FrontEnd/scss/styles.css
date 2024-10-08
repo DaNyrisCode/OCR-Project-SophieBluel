@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
+  background-color: #FDFFF5;
 }
 
 ol, ul {
@@ -179,36 +180,61 @@ nav li img {
   margin-top: 5px;
 }
 
-#contact {
+#contact, #login-form {
   width: 50%;
   margin: auto;
 }
-#contact > * {
+#contact > *, #contact > html, #contact > body, #contact > div, #contact > span, #contact > applet, #contact > object, #contact > iframe,
+#contact > h1, #contact > h2, #contact > h3, #contact > h4, #contact > h5, #contact > h6, #contact > p, #contact > blockquote, #contact > pre,
+#contact > a, #contact > abbr, #contact > acronym, #contact > address, #contact > big, #contact > cite, #contact > code,
+#contact > del, #contact > dfn, #contact > em, #contact > img, #contact > ins, #contact > kbd, #contact > q, #contact > s, #contact > samp,
+#contact > small, #contact > strike, #contact > strong, #contact > sub, #contact > sup, #contact > tt, #contact > var,
+#contact > b, #contact > u, #contact > i, #contact > center,
+#contact > dl, #contact > dt, #contact > dd, #contact > ol, #contact > ul, #contact > li,
+#contact > fieldset, #contact > form, #contact > label, #contact > legend,
+#contact > table, #contact > caption, #contact > tbody, #contact > tfoot, #contact > thead, #contact > tr, #contact > th, #contact > td,
+#contact > article, #contact > aside, #contact > canvas, #contact > details, #contact > embed,
+#contact > figure, #contact > figcaption, #contact > footer, #contact > header, #contact > hgroup,
+#contact > menu, #contact > nav, #contact > output, #contact > ruby, #contact > section, #contact > summary,
+#contact > time, #contact > mark, #contact > audio, #contact > video, #login-form > *, #login-form > html, #login-form > body, #login-form > div, #login-form > span, #login-form > applet, #login-form > object, #login-form > iframe,
+#login-form > h1, #login-form > h2, #login-form > h3, #login-form > h4, #login-form > h5, #login-form > h6, #login-form > p, #login-form > blockquote, #login-form > pre,
+#login-form > a, #login-form > abbr, #login-form > acronym, #login-form > address, #login-form > big, #login-form > cite, #login-form > code,
+#login-form > del, #login-form > dfn, #login-form > em, #login-form > img, #login-form > ins, #login-form > kbd, #login-form > q, #login-form > s, #login-form > samp,
+#login-form > small, #login-form > strike, #login-form > strong, #login-form > sub, #login-form > sup, #login-form > tt, #login-form > var,
+#login-form > b, #login-form > u, #login-form > i, #login-form > center,
+#login-form > dl, #login-form > dt, #login-form > dd, #login-form > ol, #login-form > ul, #login-form > li,
+#login-form > fieldset, #login-form > form, #login-form > label, #login-form > legend,
+#login-form > table, #login-form > caption, #login-form > tbody, #login-form > tfoot, #login-form > thead, #login-form > tr, #login-form > th, #login-form > td,
+#login-form > article, #login-form > aside, #login-form > canvas, #login-form > details, #login-form > embed,
+#login-form > figure, #login-form > figcaption, #login-form > footer, #login-form > header, #login-form > hgroup,
+#login-form > menu, #login-form > nav, #login-form > output, #login-form > ruby, #login-form > section, #login-form > summary,
+#login-form > time, #login-form > mark, #login-form > audio, #login-form > video {
   text-align: center;
 }
-#contact h2 {
+#contact h2, #login-form h2 {
   margin-bottom: 20px;
 }
-#contact form {
+#contact form, #login-form form {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
-#contact input {
+#contact input, #login-form input {
   height: 50px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  cursor: pointer;
 }
-#contact label {
+#contact label, #login-form label {
   margin: 2em 0 1em;
 }
-#contact textarea {
+#contact textarea, #login-form textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact input[type=submit] {
+#contact input[type=submit], #login-form input[type=submit] {
   font-family: "Syne";
   font-size: 14px;
   color: #ffffff;
@@ -217,6 +243,9 @@ nav li img {
   border-radius: 60px;
   width: 180px;
   height: 35px;
+}
+#contact input[type=submit]:hover, #login-form input[type=submit]:hover {
+  background-color: #113a32;
 }
 
 footer nav ul {

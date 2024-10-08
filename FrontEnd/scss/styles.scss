@@ -34,6 +34,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
+  background-color: $background-color;
 }
 
 ol, ul {
@@ -207,7 +208,7 @@ nav li {
 }
 
 // Contact Section
-#contact {
+#contact,#login-form {
   width: 50%;
   margin: auto;
 
@@ -231,6 +232,7 @@ nav li {
     font-size: 1.2em;
     border: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    cursor: pointer;
   }
 
   label {
@@ -251,6 +253,10 @@ nav li {
     border-radius: 60px;
     width: 180px;
     height: 35px;
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
   }
 }
 
