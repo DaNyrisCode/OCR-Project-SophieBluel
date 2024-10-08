@@ -1,13 +1,16 @@
+// PROJETCS ***
+let allWorks = [];
 // Récupération des Projets
-const getDataFromApi = async() => {
+const getWorksFromApi = async() => {
     const response = await fetch("http://localhost:5678/api/works");
     const worksJson = await response.json();
-    myProjects(worksJson);
+    allWorks = worksJson;
+    displayMyProjects(worksJson);
 }
-getDataFromApi();
+getWorksFromApi();
 
 // Injection HTML des Projets
-const myProjects = (works) => {
+const displayMyProjects = (works) => {
     const gallery = document.querySelector('.gallery');
     gallery.innerHTML = '';
 
@@ -32,21 +35,24 @@ const myProjects = (works) => {
     });
 };
 
+// CATEGORIES / FILTRES ***
 // Récupération des Catégories
 const getCategoriesFromApi = async() => {
     const response = await fetch("http://localhost:5678/api/categories");
     const categoriesJson = await response.json();
-    filters(categoriesJson);
-}
+    injectFilters(categoriesJson);
+};
+getCategoriesFromApi();
 
 // Injection des filtres
-const filters = (categories) => {
+const injectFilters = (categories) => {
     const filterGroup = document.querySelector('.filter-group');
 
     // Bouton par defaut
     const allBtn = document.createElement('button');
     allBtn.classList.add('filter-btn', 'active');
     allBtn.textContent = 'Tous';
+    allBtn.dataset.filter = 'all';
     filterGroup.appendChild(allBtn);
 
     // Boutons par Catégories
@@ -54,8 +60,23 @@ const filters = (categories) => {
         const filterBtn = document.createElement('button');
         filterBtn.classList.add('filter-btn');
         filterBtn.textContent = category.name;
+        filterBtn.dataset.filter = category.id;
         filterGroup.appendChild(filterBtn);
     });
-}
-getCategoriesFromApi();
+
+    // Event listener des filtres
+    filterGroup.addEventListener('click', (e) => {
+        if (e.target.classList.contains('filter-btn')) {
+            document.querySelectorAll('.filter-btn').forEach(btn => 
+                btn.classList.toggle('active', btn === e.target)
+            );
+
+            const filter = e.target.dataset.filter;
+
+            // Affiche tous les projets ou par categories
+            const projectsToDisplay = filter === 'all' ? allWorks : allWorks.filter(work => work.categoryId == filter);
+            displayMyProjects(projectsToDisplay);            
+        }
+    });
+};
 
