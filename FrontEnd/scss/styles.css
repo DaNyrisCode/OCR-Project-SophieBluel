@@ -168,6 +168,7 @@ nav li img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
+  box-sizing: border-box;
 }
 .gallery img {
   width: 100%;

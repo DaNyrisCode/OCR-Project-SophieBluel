@@ -1,12 +1,16 @@
 // PROJETCS ***
 let allWorks = [];
 // Récupération des Projets
-const getWorksFromApi = async() => {
-    const response = await fetch("http://localhost:5678/api/works");
-    const worksJson = await response.json();
-    allWorks = worksJson;
-    displayMyProjects(worksJson);
-}
+const getWorksFromApi = async () => {
+    try {
+        const response = await fetch("http://localhost:5678/api/works");
+        const worksJson = response.ok ? await response.json() : Promise.reject(`Erreur: ${response.status}`);
+        allWorks = worksJson;
+        displayMyProjects(worksJson);
+    } catch (error) {
+        console.error("Erreur de récupération des projets.");
+    }
+};
 getWorksFromApi();
 
 // Injection HTML des Projets
@@ -37,10 +41,14 @@ const displayMyProjects = (works) => {
 
 // CATEGORIES / FILTRES ***
 // Récupération des Catégories
-const getCategoriesFromApi = async() => {
-    const response = await fetch("http://localhost:5678/api/categories");
-    const categoriesJson = await response.json();
-    injectFilters(categoriesJson);
+const getCategoriesFromApi = async () => {
+    try {
+        const response = await fetch("http://localhost:5678/api/categories");
+        const categoriesJson = response.ok ? await response.json() : Promise.reject(`Erreur: ${response.status}`);
+        injectFilters(categoriesJson);
+    } catch (error) {
+        console.error("Erreur lors de la récupération des catégories");
+    }
 };
 getCategoriesFromApi();
 
