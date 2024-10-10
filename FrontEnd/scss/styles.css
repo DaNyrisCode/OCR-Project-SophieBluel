@@ -103,10 +103,13 @@ nav li a {
   color: inherit;
 }
 nav li a:hover {
-  color: #B1663C;
+  font-weight: bolder;
 }
 nav li img {
   width: 19px;
+}
+nav li img:hover {
+  scale: 1.3;
 }
 
 #introduction {
@@ -183,6 +186,7 @@ nav li img {
 #contact, #login-form {
   width: 50%;
   margin: auto;
+  text-align: center;
 }
 #contact > *, #contact > html, #contact > body, #contact > div, #contact > span, #contact > applet, #contact > object, #contact > iframe,
 #contact > h1, #contact > h2, #contact > h3, #contact > h4, #contact > h5, #contact > h6, #contact > p, #contact > blockquote, #contact > pre,
@@ -246,6 +250,9 @@ nav li img {
 }
 #contact input[type=submit]:hover, #login-form input[type=submit]:hover {
   background-color: #113a32;
+}
+#contact a, #login-form a {
+  color: black;
 }
 
 footer nav ul {

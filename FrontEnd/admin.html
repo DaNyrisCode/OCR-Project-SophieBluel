@@ -15,12 +15,21 @@
   </head>
   <body>
     <header>
-      <h1>Sophie Bluel <span>ARCHITECTE D'INTERIEUR</span></h1>
+      <h1>
+        Sophie Bluel
+        <span>ARCHITECTE D'INTERIEUR</span>
+      </h1>
       <nav>
         <ul>
-          <li><a href="#portfolio">projets</a></li>
-          <li><a href="#contact">contact</a></li>
-          <li><a href="./login.html">login</a></li>
+          <li>
+            <a href="#portfolio">projets</a>
+          </li>
+          <li>
+            <a href="#contact">contact</a>
+          </li>
+          <li>
+            <a href="./login.html">logout</a>
+          </li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -51,24 +60,8 @@
       </section>
       <section id="portfolio">
         <h2>Mes Projets</h2>
-        <section id="filters">
-          <div class="filter-group">
-            <!-- <button class="filter-btn active" data-filter="all">Tous</button>
-            <button class="filter-btn" data-filter="objects">Objets</button>
-            <button class="filter-btn" data-filter="apartments">
-              Appartements
-            </button>
-            <button class="filter-btn" data-filter="hotels-restaurants">
-              Hotels & restaurants
-            </button> -->
-          </div>
-        </section>
-        <div class="gallery">
-          <!-- <figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>-->
-        </div>
+        <span><img src="./assets/icons/modify_blck.png" alt="" />modifier</span>
+        <div class="gallery"></div>
       </section>
       <section id="contact">
         <h2>Contact</h2>
@@ -92,6 +85,11 @@
         </ul>
       </nav>
     </footer>
+    <div class="modal" id="modal1">
+      <div class="modal__content">
+        <h2>Coucou</h2>
+      </div>
+    </div>
     <script type="module" src="./js/app.js"></script>
   </body>
 </html>

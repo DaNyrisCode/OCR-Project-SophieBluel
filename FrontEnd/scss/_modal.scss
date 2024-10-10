@@ -1,0 +1,21 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+  
+    &__content {
+      background-color: $wht-color;
+      padding: 20px;
+      border-radius: 10px;
+      width: 500px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }

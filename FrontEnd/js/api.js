@@ -1,90 +1,47 @@
-// PROJETCS ***
-let allWorks = [];
-// Récupération des Projets
+// Récupération des Projects
 const getWorksFromApi = async () => {
     try {
         const response = await fetch("http://localhost:5678/api/works");
         const worksJson = response.ok ? await response.json() : Promise.reject(`Erreur: ${response.status}`);
-        allWorks = worksJson;
-        displayMyProjects(worksJson);
+
+        return worksJson;
     } catch (error) {
         console.error("Erreur de récupération des projets.");
     }
 };
-getWorksFromApi();
 
-// Injection HTML des Projets
-const displayMyProjects = (works) => {
-    const gallery = document.querySelector('.gallery');
-    gallery.innerHTML = '';
-
-    // Boucle sur les travaux
-    works.forEach(work => {
-        const figure = document.createElement('figure');
-
-        // Image
-        const img = document.createElement('img');
-        img.src = work.imageUrl;
-        img.alt = work.title;
-
-        // Figcaption
-        const figcaption = document.createElement('figcaption');
-        figcaption.textContent = work.title;
-
-        
-        figure.appendChild(img);
-        figure.appendChild(figcaption);
-
-        gallery.appendChild(figure);
-    });
-};
-
-// CATEGORIES / FILTRES ***
 // Récupération des Catégories
 const getCategoriesFromApi = async () => {
     try {
         const response = await fetch("http://localhost:5678/api/categories");
         const categoriesJson = response.ok ? await response.json() : Promise.reject(`Erreur: ${response.status}`);
-        injectFilters(categoriesJson);
+        return categoriesJson;
     } catch (error) {
         console.error("Erreur lors de la récupération des catégories");
     }
 };
-getCategoriesFromApi();
 
-// Injection des filtres
-const injectFilters = (categories) => {
-    const filterGroup = document.querySelector('.filter-group');
+// Vérification du compte
+const verifyLogin = async (email, password) => {
+    try {
+        const response = await fetch("http://localhost:5678/api/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
 
-    // Bouton par defaut
-    const allBtn = document.createElement('button');
-    allBtn.classList.add('filter-btn', 'active');
-    allBtn.textContent = 'Tous';
-    allBtn.dataset.filter = 'all';
-    filterGroup.appendChild(allBtn);
-
-    // Boutons par Catégories
-    categories.forEach(category => {
-        const filterBtn = document.createElement('button');
-        filterBtn.classList.add('filter-btn');
-        filterBtn.textContent = category.name;
-        filterBtn.dataset.filter = category.id;
-        filterGroup.appendChild(filterBtn);
-    });
-
-    // Event listener des filtres
-    filterGroup.addEventListener('click', (e) => {
-        if (e.target.classList.contains('filter-btn')) {
-            document.querySelectorAll('.filter-btn').forEach(btn => 
-                btn.classList.toggle('active', btn === e.target)
-            );
-
-            const filter = e.target.dataset.filter;
-
-            // Affiche tous les projets ou par categories
-            const projectsToDisplay = filter === 'all' ? allWorks : allWorks.filter(work => work.categoryId == filter);
-            displayMyProjects(projectsToDisplay);            
-        }
-    });
+        const user = response.ok ? await response.json() : Promise.reject(`Erreur: ${response.status}`);
+        return user;
+    } catch (error) {
+        console.error("Erreur lors de la tentative de connexion");
+        return null;
+    }
 };
 
+export {
+    getCategoriesFromApi,
+    getWorksFromApi,
+    verifyLogin
+}

@@ -113,13 +113,16 @@ nav li {
     color: inherit;
 
     &:hover {
-        color: $primary-color;
+        font-weight: bolder;
       }
   }
 
   
   & img {
     width: 19px;
+    &:hover {
+      scale: 1.3;
+    }
   }
 }
 
@@ -211,6 +214,7 @@ nav li {
 #contact,#login-form {
   width: 50%;
   margin: auto;
+  text-align: center;
 
   > * {
     text-align: center;
@@ -258,6 +262,9 @@ nav li {
       background-color: darken($secondary-color, 10%);
     }
   }
+  a {
+    color: black;
+  }
 }
 
 // Footer
@@ -270,3 +277,4 @@ footer nav ul {
     font-size: 14px;
   }
 }
+
