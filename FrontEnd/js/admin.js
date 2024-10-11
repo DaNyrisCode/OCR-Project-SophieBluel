@@ -3,8 +3,15 @@ import { getCategoriesFromApi, getWorksFromApi } from "./api.js";
 const allWorks = await getWorksFromApi();
 const categories = await getCategoriesFromApi();
 
+const modifyBtn = document.querySelector('.edit-app span');
+const modal = document.querySelector('#modal1');
+
+modifyBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+});
+
 document.querySelector('.modal').addEventListener('click', (e) => {
     if (!e.target.closest('.modal__content')) {
-        document.querySelector('.modal').classList.remove('active');
+        modal.classList.remove('active');
     }
 });

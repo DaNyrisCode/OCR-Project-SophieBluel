@@ -1,4 +1,5 @@
 import { getCategoriesFromApi, getWorksFromApi } from "./api.js";
+import './admin.js';
 
 let allWorks = await getWorksFromApi();
 const categories = await getCategoriesFromApi();

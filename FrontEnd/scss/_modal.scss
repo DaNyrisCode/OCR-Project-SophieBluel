@@ -1,3 +1,41 @@
+// Barre Edit
+.edit-mode {
+  background-color: black;
+  height: 50px;
+  color: $wht-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+
+  & img {
+    padding-right: 10px;
+    margin-bottom: -3px;
+  }
+}
+
+#portfolio {
+  .edit-app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    span {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 25px;
+      cursor: pointer;
+
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
 .modal {
     position: fixed;
     inset: 0;
@@ -6,13 +44,17 @@
     align-items: center;
     justify-content: center;
     display: none;
+
+    &.active {
+      display: flex;
+    }
   
     &__content {
       background-color: $wht-color;
       padding: 20px;
       border-radius: 10px;
-      width: 500px;
-      height: 400px;
+      width: 630px;
+      height: 688px;
       display: flex;
       flex-direction: column;
       justify-content: center;

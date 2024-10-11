@@ -1,3 +1,73 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+#login-form {
+  padding: 50px 0;
+}
+
+.edit-mode {
+  background-color: black;
+  height: 50px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+.edit-mode img {
+  padding-right: 10px;
+  margin-bottom: -3px;
+}
+
+#portfolio .edit-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+#portfolio .edit-app span {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+#portfolio .edit-app span img {
+  margin-right: 5px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.modal.active {
+  display: flex;
+}
+.modal__content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 630px;
+  height: 688px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 *, html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -52,6 +122,8 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 header {
@@ -115,14 +187,15 @@ nav li img:hover {
 #introduction {
   display: flex;
   align-items: center;
+  padding: 50px;
+  gap: 30px;
 }
 #introduction figure {
   flex: 1;
 }
 #introduction img {
   display: block;
-  margin: auto;
-  width: 80%;
+  width: 474px;
 }
 #introduction article {
   flex: 1;
@@ -173,6 +246,7 @@ nav li img:hover {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   box-sizing: border-box;
+  padding: 0 50px;
 }
 .gallery img {
   width: 100%;
@@ -186,33 +260,6 @@ nav li img:hover {
 #contact, #login-form {
   width: 50%;
   margin: auto;
-  text-align: center;
-}
-#contact > *, #contact > html, #contact > body, #contact > div, #contact > span, #contact > applet, #contact > object, #contact > iframe,
-#contact > h1, #contact > h2, #contact > h3, #contact > h4, #contact > h5, #contact > h6, #contact > p, #contact > blockquote, #contact > pre,
-#contact > a, #contact > abbr, #contact > acronym, #contact > address, #contact > big, #contact > cite, #contact > code,
-#contact > del, #contact > dfn, #contact > em, #contact > img, #contact > ins, #contact > kbd, #contact > q, #contact > s, #contact > samp,
-#contact > small, #contact > strike, #contact > strong, #contact > sub, #contact > sup, #contact > tt, #contact > var,
-#contact > b, #contact > u, #contact > i, #contact > center,
-#contact > dl, #contact > dt, #contact > dd, #contact > ol, #contact > ul, #contact > li,
-#contact > fieldset, #contact > form, #contact > label, #contact > legend,
-#contact > table, #contact > caption, #contact > tbody, #contact > tfoot, #contact > thead, #contact > tr, #contact > th, #contact > td,
-#contact > article, #contact > aside, #contact > canvas, #contact > details, #contact > embed,
-#contact > figure, #contact > figcaption, #contact > footer, #contact > header, #contact > hgroup,
-#contact > menu, #contact > nav, #contact > output, #contact > ruby, #contact > section, #contact > summary,
-#contact > time, #contact > mark, #contact > audio, #contact > video, #login-form > *, #login-form > html, #login-form > body, #login-form > div, #login-form > span, #login-form > applet, #login-form > object, #login-form > iframe,
-#login-form > h1, #login-form > h2, #login-form > h3, #login-form > h4, #login-form > h5, #login-form > h6, #login-form > p, #login-form > blockquote, #login-form > pre,
-#login-form > a, #login-form > abbr, #login-form > acronym, #login-form > address, #login-form > big, #login-form > cite, #login-form > code,
-#login-form > del, #login-form > dfn, #login-form > em, #login-form > img, #login-form > ins, #login-form > kbd, #login-form > q, #login-form > s, #login-form > samp,
-#login-form > small, #login-form > strike, #login-form > strong, #login-form > sub, #login-form > sup, #login-form > tt, #login-form > var,
-#login-form > b, #login-form > u, #login-form > i, #login-form > center,
-#login-form > dl, #login-form > dt, #login-form > dd, #login-form > ol, #login-form > ul, #login-form > li,
-#login-form > fieldset, #login-form > form, #login-form > label, #login-form > legend,
-#login-form > table, #login-form > caption, #login-form > tbody, #login-form > tfoot, #login-form > thead, #login-form > tr, #login-form > th, #login-form > td,
-#login-form > article, #login-form > aside, #login-form > canvas, #login-form > details, #login-form > embed,
-#login-form > figure, #login-form > figcaption, #login-form > footer, #login-form > header, #login-form > hgroup,
-#login-form > menu, #login-form > nav, #login-form > output, #login-form > ruby, #login-form > section, #login-form > summary,
-#login-form > time, #login-form > mark, #login-form > audio, #login-form > video {
   text-align: center;
 }
 #contact h2, #login-form h2 {
@@ -243,7 +290,7 @@ nav li img:hover {
   font-size: 14px;
   color: #ffffff;
   background-color: #1D6154;
-  margin: 2em auto;
+  margin: 30px auto;
   border-radius: 60px;
   width: 180px;
   height: 35px;
@@ -255,11 +302,18 @@ nav li img:hover {
   color: black;
 }
 
-footer nav ul {
+footer {
+  width: 100vw;
+  background-color: #ffffff;
+  height: 50px;
+  box-sizing: border-box;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
   display: flex;
   justify-content: flex-end;
-  margin: 2em;
+  align-items: center;
 }
-footer nav ul li {
+footer li {
   font-size: 14px;
+  padding-right: 60px;
 }/*# sourceMappingURL=styles.css.map */
