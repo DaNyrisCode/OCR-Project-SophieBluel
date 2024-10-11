@@ -1,12 +1,11 @@
 import { getCategoriesFromApi, getWorksFromApi } from "./api.js";
-import './admin.js';
 
 let allWorks = await getWorksFromApi();
 const categories = await getCategoriesFromApi();
 
 // PROJETCS ***
 // Injection HTML des Projets
-const displayMyProjects = (works) => {
+export const displayMyProjects = (works) => {
     const gallery = document.querySelector('.gallery');
     gallery.innerHTML = '';
 

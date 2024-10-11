@@ -23,21 +23,15 @@ const getCategoriesFromApi = async () => {
 
 // Vérification du compte
 const verifyLogin = async (email, password) => {
-    try {
-        const response = await fetch("http://localhost:5678/api/users/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
-        });
+    const response = await fetch("http://localhost:5678/api/users/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    });
 
-        const user = response.ok ? await response.json() : Promise.reject(`Erreur: ${response.status}`);
-        return user;
-    } catch (error) {
-        console.error("Erreur lors de la tentative de connexion");
-        return null;
-    }
+    return response.ok ? await response.json() : Promise.reject(new Error(`Erreur ${response.status}: ${response.statusText}`));
 };
 
 export {
