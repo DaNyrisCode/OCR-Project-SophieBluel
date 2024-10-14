@@ -13,7 +13,7 @@ main {
 }
 
 .edit-mode {
-  background-color: black;
+  background-color: #000000;
   height: 50px;
   color: #ffffff;
   display: flex;
@@ -52,9 +52,11 @@ main {
   align-items: center;
   justify-content: center;
   display: none;
+  opacity: 0;
 }
 .modal.active {
   display: flex;
+  opacity: 1;
 }
 .modal__content {
   background-color: #ffffff;
@@ -64,8 +66,69 @@ main {
   height: 688px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.modal__content .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.modal__content .add-photo-btn {
+  cursor: pointer;
+  font-family: "Syne";
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #1D6154;
+  margin: 30px auto;
+  border-radius: 60px;
+  width: 180px;
+  height: 35px;
+}
+.modal__content .add-photo-btn:hover {
+  background-color: #113a32;
+}
+.modal__gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(77px, 1fr));
+  gap: 30px 10px;
+  padding: 10px;
+  height: 430px;
+  width: 80%;
+  overflow-y: auto;
+}
+.modal figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.modal figure img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.modal figure figcaption {
+  display: none;
+}
+.modal figure .delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.modal figure .delete-btn img {
+  height: 17px;
+  width: 17px;
 }
 
 *, html, body, div, span, applet, object, iframe,
@@ -157,6 +220,19 @@ h2 {
   font-weight: 700;
   font-size: 30px;
   color: #1D6154;
+}
+
+h3 {
+  font-family: "Work Sans";
+  color: #000000;
+  font-size: 26px;
+  font-weight: 400;
+  margin-top: 30px;
+}
+
+hr {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  width: 77%;
 }
 
 nav ul {

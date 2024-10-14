@@ -43,7 +43,10 @@
     <main>
       <section id="introduction">
         <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <img
+            src="./assets/images/sophie-bluel.png"
+            alt="Photo de l'architecte Sophie Bluel"
+          />
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -68,7 +71,8 @@
         <div class="edit-app">
           <h2>Mes Projets</h2>
           <span class="edit-app-span"
-            ><img src="./assets/icons/modify_blck.png" alt="" /> modifier</span
+            ><img src="./assets/icons/modify_blck.png" alt="modify-icon" />
+            modifier</span
           >
         </div>
         <div class="gallery"></div>
@@ -97,7 +101,27 @@
     </footer>
     <div class="modal" id="modal1">
       <div class="modal__content">
-        <h2>Coucou</h2>
+        <button class="close-btn">
+          <img src="./assets/icons/xmark.png" alt="Fermer la modale" />
+        </button>
+        <h3>Galerie photo</h3>
+        <div class="modal__gallery"></div>
+        <hr />
+        <input class="add-photo-btn" type="submit" value="Ajouter une Photo" />
+      </div>
+    </div>
+    <div class="modal" id="modal2">
+      <div class="modal__content">
+        <button class="close-btn">
+          <img src="./assets/icons/xmark.png" alt="Fermer la modale" />
+        </button>
+        <h3>Ajout photo</h3>
+        <form action="">
+          <input type="text" />
+          <input type="text" />
+        </form>
+        <hr />
+        <input class="add-photo-btn" type="submit" value="Ajouter une Photo" />
       </div>
     </div>
     <script type="module" src="./js/admin.js"></script>

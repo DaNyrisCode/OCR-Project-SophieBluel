@@ -34,8 +34,44 @@ const verifyLogin = async (email, password) => {
     return response.ok ? await response.json() : Promise.reject(new Error(`Erreur ${response.status}: ${response.statusText}`));
 };
 
+// PROJETCS ***
+// Injection HTML des Projets
+const displayMyProjects = (works, container, filter = null) => {
+    container.innerHTML = '';
+
+    // Affiche les projets par defaut ou par catégorie
+    const filteredWorks = filter === 'all' || !filter
+        ? works
+        : works.filter(work => work.categoryId == filter);
+
+    filteredWorks.forEach(work => {
+        const figure = document.createElement('figure');
+        const img = document.createElement('img');
+        img.src = work.imageUrl;
+        img.alt = work.title;
+
+        const figcaption = document.createElement('figcaption');
+        figcaption.textContent = work.title;
+
+        // MODALE 
+        //Bouton corbeille 
+        if (container.classList.contains('modal__gallery')) {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('delete-btn');
+            deleteBtn.innerHTML = '<img src="./assets/icons/corbeille.png" alt="Suprimmer photo" />';
+            figure.appendChild(deleteBtn);
+        }
+
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+
+        container.appendChild(figure);
+    });
+};
+
 export {
     getCategoriesFromApi,
     getWorksFromApi,
-    verifyLogin
+    verifyLogin,
+    displayMyProjects
 }

@@ -1,6 +1,6 @@
 // Barre Edit
 .edit-mode {
-  background-color: black;
+  background-color: $blck-color;
   height: 50px;
   color: $wht-color;
   display: flex;
@@ -44,9 +44,11 @@
     align-items: center;
     justify-content: center;
     display: none;
+    opacity: 0;
 
     &.active {
       display: flex;
+      opacity: 1;
     }
   
     &__content {
@@ -57,7 +59,70 @@
       height: 688px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: space-between;
+      position: relative;
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
     }
+
+      .add-photo-btn {
+        cursor: pointer;
+        @include main-btn-green;
+
+        &:hover {
+          @include main-btn-green-hover;
+        }
+      }
   }
+  
+    &__gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(77px, 1fr));
+        gap: 30px 10px;
+        padding: 10px;
+        height: 430px;
+        width: 80%;
+        overflow-y: auto;
+    }
+
+    figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        figcaption {
+            display: none;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: transparent;
+            cursor: pointer;
+
+            & img {
+              height: 17px;
+              width: 17px;
+            }
+
+        }
+    }
+}

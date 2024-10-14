@@ -2,7 +2,23 @@
 $font-main: 'Work Sans';
 $font-secondary: 'Syne';
 $wht-color: #ffffff;
+$blck-color: #000000; 
 $background-color: #FDFFF5;
 $primary-color: #B1663C;
 $secondary-color: #1D6154;
 $max-width: 1140px;
+
+@mixin main-btn-green{
+    font-family: $font-secondary;
+    font-size: 14px;
+    color: $wht-color;
+    background-color: $secondary-color;
+    margin: 30px auto;
+    border-radius: 60px;
+    width: 180px;
+    height: 35px;
+}
+
+@mixin main-btn-green-hover{
+    background-color: darken($secondary-color, 10%);
+}

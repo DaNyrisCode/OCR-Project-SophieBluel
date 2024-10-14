@@ -101,6 +101,19 @@ h2 {
   color: $secondary-color;
 }
 
+h3 {
+  font-family: $font-main;
+  color: $blck-color;
+  font-size: 26px;
+  font-weight: 400;
+  margin-top: 30px;
+}
+
+hr {
+  border: 1px solid rgba(0, 0, 0, 0.150);
+  width: 77%;
+}
+
 nav ul {
   display: flex;
   align-items: center;
@@ -252,17 +265,10 @@ nav li {
   }
 
   input[type="submit"] {
-    font-family: $font-secondary;
-    font-size: 14px;
-    color: $wht-color;
-    background-color: $secondary-color;
-    margin: 30px auto;
-    border-radius: 60px;
-    width: 180px;
-    height: 35px;
+    @include main-btn-green;
 
     &:hover {
-      background-color: darken($secondary-color, 10%);
+      @include main-btn-green-hover;
     }
   }
   a {
