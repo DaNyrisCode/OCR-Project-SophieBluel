@@ -78,7 +78,7 @@ main {
   border: none;
   cursor: pointer;
 }
-.modal__content .add-photo-btn {
+.modal .add-photo-btn, .modal .submit-add-photo-btn {
   cursor: pointer;
   font-family: "Syne";
   font-size: 14px;
@@ -89,7 +89,7 @@ main {
   width: 180px;
   height: 35px;
 }
-.modal__content .add-photo-btn:hover {
+.modal .add-photo-btn:hover, .modal .submit-add-photo-btn:hover {
   background-color: #113a32;
 }
 .modal__gallery {

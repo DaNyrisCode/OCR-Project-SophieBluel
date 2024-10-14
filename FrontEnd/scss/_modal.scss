@@ -70,17 +70,17 @@
         background: transparent;
         border: none;
         cursor: pointer;
-    }
-
-      .add-photo-btn {
-        cursor: pointer;
-        @include main-btn-green;
-
-        &:hover {
-          @include main-btn-green-hover;
-        }
       }
   }
+
+  .add-photo-btn, .submit-add-photo-btn {
+    cursor: pointer;
+    @include main-btn-green;
+
+    &:hover {
+      @include main-btn-green-hover;
+    }
+}
   
     &__gallery {
         display: grid;
@@ -125,4 +125,4 @@
 
         }
     }
-}
+  }
