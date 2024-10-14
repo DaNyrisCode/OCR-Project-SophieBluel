@@ -5,7 +5,7 @@ const categories = await getCategoriesFromApi();
 
 // PROJETCS ***
 // Injection HTML des Projets
-export const displayMyProjects = (works) => {
+const displayMyProjects = (works) => {
     const gallery = document.querySelector('.gallery');
     gallery.innerHTML = '';
 
@@ -31,6 +31,10 @@ export const displayMyProjects = (works) => {
 };
 
 displayMyProjects(allWorks);
+
+export {
+    displayMyProjects
+}
 
 // FILTRES ***
 // Injection des filtres

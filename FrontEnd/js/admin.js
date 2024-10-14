@@ -1,6 +1,6 @@
 import { getCategoriesFromApi, getWorksFromApi } from "./api.js";
 // Le fouteur de trouble
-// import { displayMyProjects } from "./app.js"; 
+import { displayMyProjects } from "./app.js"; 
 
 const allWorks = await getWorksFromApi();
 const categories = await getCategoriesFromApi();
@@ -18,3 +18,5 @@ document.querySelector('.modal').addEventListener('click', (e) => {
     }
 });
 ;
+
+displayMyProjects(allWorks)
