@@ -36,7 +36,7 @@ const displayMyProjects = (works, container, filter = null) => {
     });
 };
 
-// ALERTES
+// ALERTES ***
 // Fenetre notif
 const showNotification = (message) => {
     const notification = document.getElementById('notification');
@@ -44,16 +44,14 @@ const showNotification = (message) => {
 
     notificationMessage.textContent = message;
 
-    notification.classList.remove('hidden');
-    notification.classList.add('visible');
+    notification.classList.toggle('visible', true);
 
     setTimeout(() => {
-        notification.classList.remove('visible');
-        notification.classList.add('hidden');
+        notification.classList.toggle('visible', false);
     }, 5000);
 };
 
-// API
+// API ***
 // Récupération des Projects
 const getWorksFromApi = async () => {
     try {
@@ -91,7 +89,7 @@ const verifyLogin = async (email, password) => {
 };
 
 // Suppression d'un projet
-const deleteResourceFromApi = async (resource, id, projectTitle) => {
+const deleteResourceFromApi = async (resource, id, title) => {
     try {
         const response = await fetch(`http://localhost:5678/api/${resource}/${id}`, {
             method: 'DELETE',
@@ -101,17 +99,20 @@ const deleteResourceFromApi = async (resource, id, projectTitle) => {
         });
 
         if (!response.ok) {
-            throw new Error(`Erreur lors de la suppression : ${response.status}`);
+            throw new Error(`Erreur : ${response.status}`);
         }
 
-        showNotification(`Le projet "${projectTitle}" a été supprimé avec succès.`);
-        return true;
+        showNotification(`Le projet "${title}" a été supprimé avec succès.`);
+
+        return { id, title };
     } catch (error) {
         showNotification(`Erreur lors de la suppression : ${error.message}`);
-        return false;
+        return null;
     }
 };
 
+
+// EXPORTS ***
 export {
     getCategoriesFromApi,
     getWorksFromApi,

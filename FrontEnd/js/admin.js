@@ -56,6 +56,7 @@ document.querySelectorAll('.modal').forEach(modal => {
 // Permut modale 1 => modale 2
 addPhotoBtn.addEventListener('click', () => {
     switchModal(modal1, modal2);
+    injectCategoriesIntoSelect(categories);
 });
 
 // Permut modale 2 => modale 1
@@ -65,19 +66,15 @@ prevBtn.addEventListener('click', () => {
 
 // Suppression d'un projet
 const deleteProject = async (projectId) => {
-    // Recherche du titre du projet
     const project = allWorks.find(work => work.id == projectId);
-    const projectTitle = project ? project.title : 'Projet inconnu';
 
-    const success = await deleteResourceFromApi('works', projectId, projectTitle);
+    // Appelle la suppression et passe l'ID et le titre
+    const deletedProject = await deleteResourceFromApi('works', projectId, project?.title || 'Projet inconnu');
 
-    if (success) {
-        // Supprime le projet de la liste allWorks
-        allWorks = allWorks.filter(work => work.id != projectId);
-
-        // Supprime le projet de la Modale
-        const projectElement = document.querySelector(`button[data-project-id="${projectId}"]`).closest('figure');
-        projectElement.remove();
+    if (deletedProject) {
+        // Supprime le projet de la Modale et met à jour la liste allWorks
+        document.querySelector(`button[data-project-id="${deletedProject.id}"]`).closest('figure').remove();
+        allWorks = allWorks.filter(work => work.id != deletedProject.id);
 
         // Actualise la gallerie
         displayMyProjects(allWorks, mainGallery);
@@ -86,8 +83,19 @@ const deleteProject = async (projectId) => {
 
 // Event listener sur les boutons delete
 document.addEventListener('click', (e) => {
-    if (e.target.closest('.delete-btn')) {
-        const projectId = e.target.closest('.delete-btn').dataset.projectId;
-        deleteProject(projectId);
-    }
+    const projectId = e.target.closest('.delete-btn').dataset.projectId;
+    deleteProject(projectId);
 });
+
+// Injection des catégories dans le select
+const injectCategoriesIntoSelect = (categories) => {
+    const selectElement = document.getElementById('categories-select');
+    selectElement.innerHTML = '';
+
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.id;
+        option.textContent = category.name;
+        selectElement.appendChild(option);
+    });
+};
