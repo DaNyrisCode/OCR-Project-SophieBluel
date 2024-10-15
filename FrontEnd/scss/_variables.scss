@@ -22,3 +22,11 @@ $max-width: 1140px;
 @mixin main-btn-green-hover{
     background-color: darken($secondary-color, 10%);
 }
+
+@mixin position-btns-modale{
+    position: absolute;
+    top: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}

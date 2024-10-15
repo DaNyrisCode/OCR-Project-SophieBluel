@@ -64,12 +64,13 @@
       position: relative;
 
       .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
+        @include position-btns-modale;
+        right: 20px;
+      }
+
+      .prev-btn {
+        @include position-btns-modale;
+        left: 20px;
       }
   }
 

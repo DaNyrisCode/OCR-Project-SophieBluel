@@ -231,7 +231,7 @@ nav li {
 }
 
 // Contact Section
-#contact,#login-form {
+#contact,#login-form,#photo-add-form {
   width: 50%;
   margin: auto;
   text-align: center;
@@ -247,7 +247,7 @@ nav li {
     flex-direction: column;
   }
 
-  input {
+  input, select {
     height: 50px;
     font-size: 1.2em;
     border: none;

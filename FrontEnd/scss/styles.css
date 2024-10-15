@@ -72,11 +72,19 @@ main {
 }
 .modal__content .close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
   background: transparent;
   border: none;
   cursor: pointer;
+  right: 20px;
+}
+.modal__content .prev-btn {
+  position: absolute;
+  top: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  left: 20px;
 }
 .modal .add-photo-btn, .modal .submit-add-photo-btn {
   cursor: pointer;
@@ -334,35 +342,35 @@ nav li img:hover {
   margin-top: 5px;
 }
 
-#contact, #login-form {
+#contact, #login-form, #photo-add-form {
   width: 50%;
   margin: auto;
   text-align: center;
 }
-#contact h2, #login-form h2 {
+#contact h2, #login-form h2, #photo-add-form h2 {
   margin-bottom: 20px;
 }
-#contact form, #login-form form {
+#contact form, #login-form form, #photo-add-form form {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
-#contact input, #login-form input {
+#contact input, #contact select, #login-form input, #login-form select, #photo-add-form input, #photo-add-form select {
   height: 50px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   cursor: pointer;
 }
-#contact label, #login-form label {
+#contact label, #login-form label, #photo-add-form label {
   margin: 2em 0 1em;
 }
-#contact textarea, #login-form textarea {
+#contact textarea, #login-form textarea, #photo-add-form textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact input[type=submit], #login-form input[type=submit] {
+#contact input[type=submit], #login-form input[type=submit], #photo-add-form input[type=submit] {
   font-family: "Syne";
   font-size: 14px;
   color: #ffffff;
@@ -372,10 +380,10 @@ nav li img:hover {
   width: 180px;
   height: 35px;
 }
-#contact input[type=submit]:hover, #login-form input[type=submit]:hover {
+#contact input[type=submit]:hover, #login-form input[type=submit]:hover, #photo-add-form input[type=submit]:hover {
   background-color: #113a32;
 }
-#contact a, #login-form a {
+#contact a, #login-form a, #photo-add-form a {
   color: black;
 }
 
