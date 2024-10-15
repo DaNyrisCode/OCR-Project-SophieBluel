@@ -139,6 +139,38 @@ main {
   width: 17px;
 }
 
+#photo-add-form {
+  width: 70% !important;
+  height: 70%;
+}
+#photo-add-form .file-upload-container {
+  background-color: #E8F1F6;
+  padding: 30px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+#photo-add-form .file-upload-container label {
+  font-family: "Work Sans";
+  font-size: 16px;
+  color: #306685;
+  background-color: #CBD6DC;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-block;
+}
+#photo-add-form .file-upload-container input[type=file] {
+  display: none;
+}
+#photo-add-form .file-upload-container p {
+  font-family: "Work Sans";
+  font-size: 10px;
+  color: #306685;
+}
+
 *, html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -241,6 +273,8 @@ h3 {
 hr {
   border: 1px solid rgba(0, 0, 0, 0.15);
   width: 77%;
+  position: absolute;
+  bottom: 120px;
 }
 
 nav ul {
@@ -364,7 +398,7 @@ nav li img:hover {
   cursor: pointer;
 }
 #contact label, #login-form label, #photo-add-form label {
-  margin: 2em 0 1em;
+  margin: 20px 0 10px;
 }
 #contact textarea, #login-form textarea, #photo-add-form textarea {
   border: none;
@@ -384,7 +418,7 @@ nav li img:hover {
   background-color: #113a32;
 }
 #contact a, #login-form a, #photo-add-form a {
-  color: black;
+  color: #000000;
 }
 
 footer {

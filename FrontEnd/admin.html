@@ -122,16 +122,20 @@
         <button class="close-btn">
           <img src="./assets/icons/xmark.png" alt="Fermer la modale" />
         </button>
+        <h3>Ajout photo</h3>
         <section id="photo-add-form">
-          <h3>Ajout photo</h3>
           <form action="#" method="post">
-            <label for="new-project"></label>
-            <input
-              type="file"
-              id="new-project"
-              name="new-project"
-              accept="image/png, image/jpeg"
-            />
+            <div class="file-upload-container">
+              <img src="./assets/icons/add-img.png" alt="" />
+              <label for="new-project">+ Ajouter photo</label>
+              <input
+                type="file"
+                id="new-project"
+                name="new-project"
+                accept="image/png, image/jpeg"
+              />
+              <p>jpg, png : 4mo max</p>
+            </div>
             <label for="title">Titre</label>
             <input type="text" name="title" id="title" />
             <label for="categories-select">Catégorie</label>

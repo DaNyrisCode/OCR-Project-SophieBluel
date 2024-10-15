@@ -112,6 +112,8 @@ h3 {
 hr {
   border: 1px solid rgba(0, 0, 0, 0.150);
   width: 77%;
+  position: absolute;
+  bottom: 120px;
 }
 
 nav ul {
@@ -256,7 +258,7 @@ nav li {
   }
 
   label {
-    margin: 2em 0 1em;
+    margin: 20px 0 10px;
   }
 
   textarea {
@@ -272,7 +274,7 @@ nav li {
     }
   }
   a {
-    color: black;
+    color: $blck-color;
   }
 }
 

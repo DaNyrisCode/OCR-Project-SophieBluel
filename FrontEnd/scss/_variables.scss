@@ -1,11 +1,16 @@
 // Variables
 $font-main: 'Work Sans';
 $font-secondary: 'Syne';
+
 $wht-color: #ffffff;
 $blck-color: #000000; 
-$background-color: #FDFFF5;
 $primary-color: #B1663C;
 $secondary-color: #1D6154;
+$tertiary-color: #306685;
+$background-color: #FDFFF5;
+$background-modal: #E8F1F6;
+$background-btn-modal: #CBD6DC;
+
 $max-width: 1140px;
 
 @mixin main-btn-green{

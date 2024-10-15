@@ -127,3 +127,41 @@
         }
     }
   }
+
+#photo-add-form {
+  width: 70% !important;
+  height: 70%;
+
+  .file-upload-container {
+    background-color: $background-modal;
+    padding: 30px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    label {
+      font-family: $font-main;
+      font-size: 16px;
+      color: $tertiary-color;
+      background-color: $background-btn-modal;
+      padding: 10px;
+      border-radius: 30px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    p {
+      font-family: "Work Sans";
+      font-size: 10px;
+      color: $tertiary-color;
+    }
+  }
+}
+
+  
