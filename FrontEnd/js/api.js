@@ -1,3 +1,59 @@
+// PROJETCS ***
+// Injection HTML des Projets
+const displayMyProjects = (works, container, filter = null) => {
+    container.innerHTML = '';
+
+    // Affiche les projets par defaut ou par catégorie
+    const filteredWorks = filter === 'all' || !filter
+        ? works
+        : works.filter(work => work.categoryId == filter);
+
+    filteredWorks.forEach(work => {
+        const figure = document.createElement('figure');
+        const img = document.createElement('img');
+        img.src = work.imageUrl;
+        img.alt = work.title;
+
+        const figcaption = document.createElement('figcaption');
+        figcaption.textContent = work.title;
+
+        // MODALE 
+        //Bouton corbeille 
+        if (container.classList.contains('modal__gallery')) {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('delete-btn');
+            deleteBtn.innerHTML = '<img src="./assets/icons/corbeille.png" alt="Suprimmer photo" />';
+
+            deleteBtn.dataset.projectId = work.id;
+
+            figure.appendChild(deleteBtn);
+        }
+
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+
+        container.appendChild(figure);
+    });
+};
+
+// ALERTES
+// Fenetre notif
+const showNotification = (message) => {
+    const notification = document.getElementById('notification');
+    const notificationMessage = document.getElementById('notification-message');
+
+    notificationMessage.textContent = message;
+
+    notification.classList.remove('hidden');
+    notification.classList.add('visible');
+
+    setTimeout(() => {
+        notification.classList.remove('visible');
+        notification.classList.add('hidden');
+    }, 5000);
+};
+
+// API
 // Récupération des Projects
 const getWorksFromApi = async () => {
     try {
@@ -34,44 +90,32 @@ const verifyLogin = async (email, password) => {
     return response.ok ? await response.json() : Promise.reject(new Error(`Erreur ${response.status}: ${response.statusText}`));
 };
 
-// PROJETCS ***
-// Injection HTML des Projets
-const displayMyProjects = (works, container, filter = null) => {
-    container.innerHTML = '';
+// Suppression d'un projet
+const deleteResourceFromApi = async (resource, id, projectTitle) => {
+    try {
+        const response = await fetch(`http://localhost:5678/api/${resource}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
 
-    // Affiche les projets par defaut ou par catégorie
-    const filteredWorks = filter === 'all' || !filter
-        ? works
-        : works.filter(work => work.categoryId == filter);
-
-    filteredWorks.forEach(work => {
-        const figure = document.createElement('figure');
-        const img = document.createElement('img');
-        img.src = work.imageUrl;
-        img.alt = work.title;
-
-        const figcaption = document.createElement('figcaption');
-        figcaption.textContent = work.title;
-
-        // MODALE 
-        //Bouton corbeille 
-        if (container.classList.contains('modal__gallery')) {
-            const deleteBtn = document.createElement('button');
-            deleteBtn.classList.add('delete-btn');
-            deleteBtn.innerHTML = '<img src="./assets/icons/corbeille.png" alt="Suprimmer photo" />';
-            figure.appendChild(deleteBtn);
+        if (!response.ok) {
+            throw new Error(`Erreur lors de la suppression : ${response.status}`);
         }
 
-        figure.appendChild(img);
-        figure.appendChild(figcaption);
-
-        container.appendChild(figure);
-    });
+        showNotification(`Le projet "${projectTitle}" a été supprimé avec succès.`);
+        return true;
+    } catch (error) {
+        showNotification(`Erreur lors de la suppression : ${error.message}`);
+        return false;
+    }
 };
 
 export {
     getCategoriesFromApi,
     getWorksFromApi,
     verifyLogin,
-    displayMyProjects
-}
+    displayMyProjects,
+    deleteResourceFromApi
+};

@@ -296,3 +296,32 @@ footer {
   }
 }
 
+// Fenetre d'alerte
+.notification {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 400px;
+  height: 125px;
+  transform: translateX(-50%);
+  background-color: $background-modal;
+  color: $tertiary-color;
+  padding: 15px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: $font-main;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  
+  &.hidden {
+    opacity: 0;
+  }
+
+  &.visible {
+      opacity: 1;
+  }
+}
+

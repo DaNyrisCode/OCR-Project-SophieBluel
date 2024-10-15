@@ -15,6 +15,7 @@
   }
 }
 
+// Bouton Modifier
 #portfolio {
   .edit-app {
     display: flex;
@@ -85,7 +86,7 @@
   
     &__gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(77px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(77px, 1fr));   grid-template-rows: repeat(auto-fill, minmax(102px, 1fr));
         gap: 30px 10px;
         padding: 10px;
         height: 430px;
@@ -128,6 +129,7 @@
     }
   }
 
+// Modale 2 Ajout de Nouveaux Projets
 #photo-add-form {
   width: 70% !important;
   height: 70%;

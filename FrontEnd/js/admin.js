@@ -1,7 +1,6 @@
-import { getCategoriesFromApi, getWorksFromApi } from "./api.js";
-import { displayMyProjects } from "./api.js";
+import { getCategoriesFromApi, getWorksFromApi, displayMyProjects, deleteResourceFromApi } from "./api.js";
 
-const allWorks = await getWorksFromApi();
+let allWorks = await getWorksFromApi();
 const categories = await getCategoriesFromApi();
 
 const mainGallery = document.querySelector('.gallery');
@@ -63,3 +62,32 @@ addPhotoBtn.addEventListener('click', () => {
 prevBtn.addEventListener('click', () => {
     switchModal(modal2, modal1);
 })
+
+// Suppression d'un projet
+const deleteProject = async (projectId) => {
+    // Recherche du titre du projet
+    const project = allWorks.find(work => work.id == projectId);
+    const projectTitle = project ? project.title : 'Projet inconnu';
+
+    const success = await deleteResourceFromApi('works', projectId, projectTitle);
+
+    if (success) {
+        // Supprime le projet de la liste allWorks
+        allWorks = allWorks.filter(work => work.id != projectId);
+
+        // Supprime le projet de la Modale
+        const projectElement = document.querySelector(`button[data-project-id="${projectId}"]`).closest('figure');
+        projectElement.remove();
+
+        // Actualise la gallerie
+        displayMyProjects(allWorks, mainGallery);
+    }
+};
+
+// Event listener sur les boutons delete
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.delete-btn')) {
+        const projectId = e.target.closest('.delete-btn').dataset.projectId;
+        deleteProject(projectId);
+    }
+});

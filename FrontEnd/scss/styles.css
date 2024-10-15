@@ -103,6 +103,7 @@ main {
 .modal__gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(77px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(102px, 1fr));
   gap: 30px 10px;
   padding: 10px;
   height: 430px;
@@ -435,4 +436,30 @@ footer {
 footer li {
   font-size: 14px;
   padding-right: 60px;
+}
+
+.notification {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 400px;
+  height: 125px;
+  transform: translateX(-50%);
+  background-color: #E8F1F6;
+  color: #306685;
+  padding: 15px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Work Sans";
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.notification.hidden {
+  opacity: 0;
+}
+.notification.visible {
+  opacity: 1;
 }/*# sourceMappingURL=styles.css.map */
