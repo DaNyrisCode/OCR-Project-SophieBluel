@@ -124,14 +124,14 @@
         </button>
         <h3>Ajout photo</h3>
         <section id="photo-add-form">
-          <form action="#" method="post">
+          <form id="addProject">
             <div class="file-upload-container">
               <img src="./assets/icons/add-img.png" alt="" />
               <label for="new-project">+ Ajouter photo</label>
               <input
                 type="file"
                 id="new-project"
-                name="new-project"
+                name="image"
                 accept="image/png, image/jpeg"
               />
               <p>jpg, png : 4mo max</p>
@@ -139,11 +139,16 @@
             <label for="title">Titre</label>
             <input type="text" name="title" id="title" />
             <label for="categories-select">Catégorie</label>
-            <select name="categories" id="categories-select"></select>
+            <select name="category" id="categories-select"></select>
           </form>
         </section>
         <hr />
-        <input class="submit-add-photo-btn" type="submit" value="Valider" />
+        <input
+          class="submit-add-photo-btn"
+          type="submit"
+          value="Valider"
+          form="addProject"
+        />
       </div>
     </div>
     <div id="notification" class="notification hidden">

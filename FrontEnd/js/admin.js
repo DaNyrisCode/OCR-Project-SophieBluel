@@ -1,22 +1,37 @@
-import { getCategoriesFromApi, getWorksFromApi, displayMyProjects, deleteResourceFromApi } from "./api.js";
+import { 
+    getCategoriesFromApi, 
+    getWorksFromApi, 
+    displayMyProjects, 
+    deleteResourceFromApi 
+} from "./api.js";
 
 let allWorks = await getWorksFromApi();
 const categories = await getCategoriesFromApi();
 
 const mainGallery = document.querySelector('.gallery');
-
-// Injection HTML des Projets
-displayMyProjects(allWorks, mainGallery);
-
+const modifyBtn = document.querySelector('.edit-app span');
 
 // Gestion modale
-const modifyBtn = document.querySelector('.edit-app span');
 const modal1 = document.querySelector('#modal1');
+const modalGallery = modal1.querySelector('.modal__gallery');
 const modal2 = document.querySelector('#modal2');
 const closeModalBtns = document.querySelectorAll('.close-btn');
 const prevBtn = document.querySelector('.prev-btn');
 const addPhotoBtn = document.querySelector('.add-photo-btn');
 
+// Event listener sur les boutons delete
+const deleteListener = () => {
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const projectId = e.target.parentElement.dataset.projectId;
+            deleteProject(projectId);
+        });
+    })
+}
+
+// Injection HTML des Projets
+displayMyProjects(allWorks, mainGallery);
+deleteListener()
 
 // Ouverture Modale - Fermeture Modale
 const toggleModal = (modal, show) => {
@@ -29,13 +44,12 @@ const switchModal = (currentModal, nextModal) => {
     nextModal.classList.add('active');
 };
 
-
 // Ouverture Modale depuis le Btn modifier
 modifyBtn.addEventListener('click', () => {
     toggleModal(modal1, true);
 
-    const modalGallery = modal1.querySelector('.modal__gallery');
     displayMyProjects(allWorks, modalGallery);
+    deleteListener()
 });
 
 // Fermeture via Btn X
@@ -70,22 +84,16 @@ const deleteProject = async (projectId) => {
 
     // Appelle la suppression et passe l'ID et le titre
     const deletedProject = await deleteResourceFromApi('works', projectId, project?.title || 'Projet inconnu');
-
     if (deletedProject) {
         // Supprime le projet de la Modale et met à jour la liste allWorks
-        document.querySelector(`button[data-project-id="${deletedProject.id}"]`).closest('figure').remove();
         allWorks = allWorks.filter(work => work.id != deletedProject.id);
 
         // Actualise la gallerie
         displayMyProjects(allWorks, mainGallery);
+        displayMyProjects(allWorks, modalGallery);
+        deleteListener()
     }
 };
-
-// Event listener sur les boutons delete
-document.addEventListener('click', (e) => {
-    const projectId = e.target.closest('.delete-btn').dataset.projectId;
-    deleteProject(projectId);
-});
 
 // Injection des catégories dans le select
 const injectCategoriesIntoSelect = (categories) => {
@@ -99,3 +107,36 @@ const injectCategoriesIntoSelect = (categories) => {
         selectElement.appendChild(option);
     });
 };
+
+/* Gestion formulaire
+const form = document.getElementById('addProject');
+const inputFile = document.getElementById('new-project');
+
+inputFile.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    const url = URL.createObjectURL(file);
+
+    console.log(url);
+})
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    const response = await fetch('http://localhost:5678/api/works', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: formData
+    })
+
+    const data = await response.json();
+
+    allWorks.push(data);
+
+    displayMyProjects(allWorks, mainGallery);
+    displayMyProjects(allWorks, modalGallery);
+}) */
+
+

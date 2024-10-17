@@ -36,21 +36,6 @@ const displayMyProjects = (works, container, filter = null) => {
     });
 };
 
-// ALERTES ***
-// Fenetre notif
-const showNotification = (message) => {
-    const notification = document.getElementById('notification');
-    const notificationMessage = document.getElementById('notification-message');
-
-    notificationMessage.innerHTML = message;
-
-    notification.classList.toggle('visible', true);
-
-    setTimeout(() => {
-        notification.classList.toggle('visible', false);
-    }, 5000);
-};
-
 // API ***
 // Récupération des Projects
 const getWorksFromApi = async () => {
@@ -102,12 +87,12 @@ const deleteResourceFromApi = async (resource, id, title) => {
             throw new Error(`Erreur : ${response.status}`);
         }
 
-        showNotification(`Le projet "${title}" a été supprimé avec succès. <img src="./assets/icons/approved.png" alt="Validé">`);
+        alert(`Le projet "${title}" a été supprimé avec succès.`);
 
 
         return { id, title };
     } catch (error) {
-        showNotification(`Erreur lors de la suppression : ${error.message}`);
+        console.error(`Erreur lors de la suppression : ${error.message}`);
         return null;
     }
 };

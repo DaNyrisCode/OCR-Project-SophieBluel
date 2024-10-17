@@ -436,35 +436,4 @@ footer {
 footer li {
   font-size: 14px;
   padding-right: 60px;
-}
-
-.notification {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  width: 400px;
-  height: 125px;
-  transform: translateX(-50%);
-  background-color: #E8F1F6;
-  color: #306685;
-  padding: 15px 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-family: "Work Sans";
-  font-size: 17px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.3s ease-in-out;
-}
-.notification.hidden {
-  opacity: 0;
-}
-.notification.visible {
-  opacity: 1;
-}
-.notification img {
-  display: block;
-  margin: 10px auto 0;
-  width: 30px;
 }/*# sourceMappingURL=styles.css.map */
