@@ -455,11 +455,16 @@ footer li {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease-in-out;
 }
 .notification.hidden {
   opacity: 0;
 }
 .notification.visible {
   opacity: 1;
+}
+.notification img {
+  display: block;
+  margin: 10px auto 0;
+  width: 30px;
 }/*# sourceMappingURL=styles.css.map */

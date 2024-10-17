@@ -42,7 +42,7 @@ const showNotification = (message) => {
     const notification = document.getElementById('notification');
     const notificationMessage = document.getElementById('notification-message');
 
-    notificationMessage.textContent = message;
+    notificationMessage.innerHTML = message;
 
     notification.classList.toggle('visible', true);
 
@@ -102,7 +102,8 @@ const deleteResourceFromApi = async (resource, id, title) => {
             throw new Error(`Erreur : ${response.status}`);
         }
 
-        showNotification(`Le projet "${title}" a été supprimé avec succès.`);
+        showNotification(`Le projet "${title}" a été supprimé avec succès. <img src="./assets/icons/approved.png" alt="Validé">`);
+
 
         return { id, title };
     } catch (error) {
