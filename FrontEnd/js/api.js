@@ -97,6 +97,28 @@ const deleteResourceFromApi = async (resource, id, title) => {
     }
 };
 
+// Ajout d'un projet
+const addProjectToApi = async (formData) => {
+    try {
+        const response = await fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur lors de l'ajout du projet : ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Erreur lors de l'ajout du projet : ${error.message}`);
+        return null;
+    }
+};
 
 // EXPORTS ***
 export {
@@ -104,5 +126,6 @@ export {
     getWorksFromApi,
     verifyLogin,
     displayMyProjects,
-    deleteResourceFromApi
+    deleteResourceFromApi,
+    addProjectToApi
 };

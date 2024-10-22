@@ -2,7 +2,8 @@ import {
     getCategoriesFromApi, 
     getWorksFromApi, 
     displayMyProjects, 
-    deleteResourceFromApi 
+    deleteResourceFromApi,
+    addProjectToApi 
 } from "./api.js";
 
 let allWorks = await getWorksFromApi();
@@ -10,6 +11,12 @@ const categories = await getCategoriesFromApi();
 
 const mainGallery = document.querySelector('.gallery');
 const modifyBtn = document.querySelector('.edit-app span');
+
+// Formulaire
+const form = document.getElementById('addProject');
+const imageInput = document.getElementById('new-project');
+const fileUploadContainer = document.querySelector('.file-upload-container');
+const submitButton = document.querySelector('submit-add-photo-btn')
 
 // Gestion modale
 const modal1 = document.querySelector('#modal1');
@@ -108,35 +115,56 @@ const injectCategoriesIntoSelect = (categories) => {
     });
 };
 
-/* Gestion formulaire
-const form = document.getElementById('addProject');
-const inputFile = document.getElementById('new-project');
-
-inputFile.addEventListener('change', (e) => {
+/* Prévisualisation de l'image
+imageInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
     const url = URL.createObjectURL(file);
-
     console.log(url);
-})
+    
 
+    if (file) {
+        // Remplace le contenu de l'input File
+        fileUploadContainer.innerHTML = `
+            <img src="${url}" alt="Aperçu de l'image" class="uploaded-image" />
+        `;
+    }
+}); */
+
+// Verif des champs 
+const validateForm = () => {
+    const title = document.getElementById('title').value;
+    const category = document.getElementById('categories-select').value;
+    const imageInput = document.getElementById('new-project');
+
+    return title !== '' && category !== '' && imageInput.files.length > 0;
+};
+
+// Gestion de la soumission du formulaire
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+        // submitButton.classList.add('invalid');
+        alert('Veuillez remplir tous les champs.');
+        return;
+    }
+
     const formData = new FormData(form);
 
-    const response = await fetch('http://localhost:5678/api/works', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: formData
-    })
+    try {
+        const data = await addProjectToApi(formData);
 
-    const data = await response.json();
+        // Mise à jour des projets
+        allWorks.push(data);
+        displayMyProjects(allWorks, mainGallery);
+        displayMyProjects(allWorks, modalGallery);
 
-    allWorks.push(data);
+        alert(`Le projet "${data.title}" a été ajouté avec succès.`);
 
-    displayMyProjects(allWorks, mainGallery);
-    displayMyProjects(allWorks, modalGallery);
-}) */
+        form.reset();
+    } catch (error) {
+        alert(error.message);
+    }
+});
 
 

@@ -12,7 +12,7 @@ loginForm.addEventListener("submit", async (e) => {
         const user = await verifyLogin(email, password);
 
         if (user && user.token) {
-            localStorage.setItem("token", user.token);
+            localStorage.setItem("token", user.token);           
             window.location.href = "./admin.html";
         }
     } catch (error) {
