@@ -158,6 +158,7 @@ form.addEventListener('submit', async (e) => {
         allWorks.push(data);
         displayMyProjects(allWorks, mainGallery);
         displayMyProjects(allWorks, modalGallery);
+        switchModal(modal2, modal1);
 
         alert(`Le projet "${data.title}" a été ajouté avec succès.`);
 
