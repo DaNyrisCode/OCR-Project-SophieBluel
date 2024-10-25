@@ -126,15 +126,17 @@
         <section id="photo-add-form">
           <form id="addProject">
             <div class="file-upload-container">
-              <img src="./assets/icons/add-img.png" alt="" />
-              <label for="new-project">+ Ajouter photo</label>
-              <input
-                type="file"
-                id="new-project"
-                name="image"
-                accept="image/png, image/jpeg"
-              />
-              <p>jpg, png : 4mo max</p>
+              <img src="./assets/icons/add-img.png" alt="" id="previewImage" />
+              <div id="toHide">
+                <label for="new-project">+ Ajouter photo</label>
+                <input
+                  type="file"
+                  id="new-project"
+                  name="image"
+                  accept="image/png, image/jpeg"
+                />
+                <p>jpg, png : 4mo max</p>
+              </div>
             </div>
             <label for="title">Titre</label>
             <input type="text" name="title" id="title" />
@@ -144,7 +146,7 @@
         </section>
         <hr />
         <input
-          class="submit-add-photo-btn"
+          class="submit-add-photo-btn invalid"
           type="submit"
           value="Valider"
           form="addProject"

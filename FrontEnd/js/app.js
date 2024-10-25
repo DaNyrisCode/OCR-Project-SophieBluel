@@ -42,9 +42,5 @@ const injectFilters = (categories) => {
     });
 };
 
+// INJECTS ***
 injectFilters(categories);
-
-if (localStorage.getItem("token")) {
-
-    // Code si connecté
-}

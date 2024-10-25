@@ -75,14 +75,23 @@
       }
   }
 
-  .add-photo-btn, .submit-add-photo-btn {
+  .add-photo-btn,
+  .submit-add-photo-btn {
     cursor: pointer;
     @include main-btn-green;
 
+    &.invalid {
+      background-color: $background-invalid-modal;
+    }
+
     &:hover {
       @include main-btn-green-hover;
+
+      &.invalid {
+        background-color: $background-invalid-modal;
+      }
     }
-}
+  }
   
     &__gallery {
         display: grid;
@@ -146,6 +155,11 @@
     height: 200px;
     overflow: hidden;
 
+    #previewImage {
+      max-height: 200px;
+      max-width: 413px;
+    }
+
     label {
       font-family: $font-main;
       font-size: 16px;
@@ -166,16 +180,9 @@
       font-size: 10px;
       color: $tertiary-color;
     }
-
-    .uploaded-image {
-      max-width: 36%;
-      // object-fit: contain; 
-    }
   }
 }
 
-.invalid {
-  background-color: $background-invalid-modal;
-}
+
 
   

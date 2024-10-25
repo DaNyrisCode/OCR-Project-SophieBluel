@@ -1,10 +1,16 @@
-import { 
-    getCategoriesFromApi, 
-    getWorksFromApi, 
-    displayMyProjects, 
+import {
+    getCategoriesFromApi,
+    getWorksFromApi,
+    displayMyProjects,
     deleteResourceFromApi,
-    addProjectToApi 
+    addProjectToApi
 } from "./api.js";
+
+// Redirection si l'utilisateur n'est pas connecté
+if (!localStorage.getItem('token')) {
+    window.location.href = './login.html';
+    alert("Veuillez saisir vos identifiants");
+}
 
 let allWorks = await getWorksFromApi();
 const categories = await getCategoriesFromApi();
@@ -15,8 +21,9 @@ const modifyBtn = document.querySelector('.edit-app span');
 // Formulaire
 const form = document.getElementById('addProject');
 const imageInput = document.getElementById('new-project');
-const fileUploadContainer = document.querySelector('.file-upload-container');
-const submitButton = document.querySelector('submit-add-photo-btn')
+const titleInput = document.getElementById('title');
+const categorySelect = document.getElementById('categories-select');
+const submitButton = document.querySelector('.submit-add-photo-btn');
 
 // Gestion modale
 const modal1 = document.querySelector('#modal1');
@@ -25,6 +32,26 @@ const modal2 = document.querySelector('#modal2');
 const closeModalBtns = document.querySelectorAll('.close-btn');
 const prevBtn = document.querySelector('.prev-btn');
 const addPhotoBtn = document.querySelector('.add-photo-btn');
+const toHide = document.querySelector('#toHide');
+
+// Injection des catégories dans le select
+const injectCategoriesIntoSelect = (categories) => {
+    const selectElement = document.getElementById('categories-select');
+    selectElement.innerHTML = '';
+
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.id;
+        option.textContent = category.name;
+        selectElement.appendChild(option);
+    });
+};
+
+// Reset du form & preview image
+const resetFormAndPreview = () => {
+    form.reset();
+    togglePreview();
+};
 
 // Event listener sur les boutons delete
 const deleteListener = () => {
@@ -36,10 +63,7 @@ const deleteListener = () => {
     })
 }
 
-// Injection HTML des Projets
-displayMyProjects(allWorks, mainGallery);
-deleteListener()
-
+// COMPORTEMENT MODALE ***
 // Ouverture Modale - Fermeture Modale
 const toggleModal = (modal, show) => {
     modal.classList.toggle('active', show);
@@ -54,7 +78,6 @@ const switchModal = (currentModal, nextModal) => {
 // Ouverture Modale depuis le Btn modifier
 modifyBtn.addEventListener('click', () => {
     toggleModal(modal1, true);
-
     displayMyProjects(allWorks, modalGallery);
     deleteListener()
 });
@@ -64,13 +87,17 @@ closeModalBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         const modal = btn.closest('.modal');
         toggleModal(modal, false);
+        resetFormAndPreview();
     });
 });
 
 // Fermeture via click en dehors
 document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', (e) => {
-        if (!e.target.closest('.modal__content')) toggleModal(modal, false);
+        if (!e.target.closest('.modal__content')) {
+            toggleModal(modal, false);
+            resetFormAndPreview();
+        }
     });
 });
 
@@ -78,12 +105,15 @@ document.querySelectorAll('.modal').forEach(modal => {
 addPhotoBtn.addEventListener('click', () => {
     switchModal(modal1, modal2);
     injectCategoriesIntoSelect(categories);
+    toHide.classList.remove('hidden');
 });
 
 // Permut modale 2 => modale 1
 prevBtn.addEventListener('click', () => {
     switchModal(modal2, modal1);
+    resetFormAndPreview();
 })
+// ***
 
 // Suppression d'un projet
 const deleteProject = async (projectId) => {
@@ -102,49 +132,32 @@ const deleteProject = async (projectId) => {
     }
 };
 
-// Injection des catégories dans le select
-const injectCategoriesIntoSelect = (categories) => {
-    const selectElement = document.getElementById('categories-select');
-    selectElement.innerHTML = '';
-
-    categories.forEach(category => {
-        const option = document.createElement('option');
-        option.value = category.id;
-        option.textContent = category.name;
-        selectElement.appendChild(option);
-    });
+// UPLOAD IMAGE ***
+// Prévisualisation de l'image du Nouveau Projet
+const togglePreview = (url = "./assets/icons/add-img.png") => {
+    const previewImage = document.querySelector('#previewImage');
+    toHide.classList.toggle('hidden');
+    previewImage.src = url;
 };
 
-/* Prévisualisation de l'image
+// Event listener pour la sélection d'image
 imageInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    const url = URL.createObjectURL(file);
-    console.log(url);
-    
+    const url = file ? URL.createObjectURL(file) : null;
+    togglePreview(url);
+});
 
-    if (file) {
-        // Remplace le contenu de l'input File
-        fileUploadContainer.innerHTML = `
-            <img src="${url}" alt="Aperçu de l'image" class="uploaded-image" />
-        `;
-    }
-}); */
-
+// AJOUTS NEW PROJETS & VERIF CHAMPS ***
 // Verif des champs 
 const validateForm = () => {
-    const title = document.getElementById('title').value;
-    const category = document.getElementById('categories-select').value;
-    const imageInput = document.getElementById('new-project');
-
-    return title !== '' && category !== '' && imageInput.files.length > 0;
+    return titleInput.value.trim() !== '' && categorySelect.value !== '' && imageInput.files.length > 0;
 };
 
-// Gestion de la soumission du formulaire
+// Ajouts de Nouveau Projets
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
-        // submitButton.classList.add('invalid');
         alert('Veuillez remplir tous les champs.');
         return;
     }
@@ -159,13 +172,29 @@ form.addEventListener('submit', async (e) => {
         displayMyProjects(allWorks, mainGallery);
         displayMyProjects(allWorks, modalGallery);
         switchModal(modal2, modal1);
+        deleteListener()
 
         alert(`Le projet "${data.title}" a été ajouté avec succès.`);
-
-        form.reset();
+        resetFormAndPreview();
     } catch (error) {
         alert(error.message);
     }
 });
 
+// Gestion du Btn Valider
+const checkButton = () => {
+    validateForm() 
+        ? submitButton.classList.remove('invalid') 
+        : submitButton.classList.add('invalid');
+};
 
+// Event Listener pour la validation du formulaire
+titleInput.addEventListener('input', checkButton);
+categorySelect.addEventListener('change', checkButton);
+imageInput.addEventListener('change', checkButton);
+
+
+// INJECTS ***
+displayMyProjects(allWorks, mainGallery);
+deleteListener();
+injectCategoriesIntoSelect(categories);

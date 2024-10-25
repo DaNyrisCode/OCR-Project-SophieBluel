@@ -86,7 +86,8 @@ main {
   cursor: pointer;
   left: 20px;
 }
-.modal .add-photo-btn, .modal .submit-add-photo-btn {
+.modal .add-photo-btn,
+.modal .submit-add-photo-btn {
   cursor: pointer;
   font-family: "Syne";
   font-size: 14px;
@@ -97,8 +98,17 @@ main {
   width: 180px;
   height: 35px;
 }
-.modal .add-photo-btn:hover, .modal .submit-add-photo-btn:hover {
+.modal .add-photo-btn.invalid,
+.modal .submit-add-photo-btn.invalid {
+  background-color: #A7A7A7;
+}
+.modal .add-photo-btn:hover,
+.modal .submit-add-photo-btn:hover {
   background-color: #113a32;
+}
+.modal .add-photo-btn:hover.invalid,
+.modal .submit-add-photo-btn:hover.invalid {
+  background-color: #A7A7A7;
 }
 .modal__gallery {
   display: grid;
@@ -156,6 +166,10 @@ main {
   height: 200px;
   overflow: hidden;
 }
+#photo-add-form .file-upload-container #previewImage {
+  max-height: 200px;
+  max-width: 413px;
+}
 #photo-add-form .file-upload-container label {
   font-family: "Work Sans";
   font-size: 16px;
@@ -173,13 +187,6 @@ main {
   font-family: "Work Sans";
   font-size: 10px;
   color: #306685;
-}
-#photo-add-form .file-upload-container .uploaded-image {
-  max-width: 36%;
-}
-
-.invalid {
-  background-color: #A7A7A7;
 }
 
 *, html, body, div, span, applet, object, iframe,
@@ -230,6 +237,10 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 body {
@@ -380,7 +391,6 @@ nav li img:hover {
 }
 .gallery img {
   width: 100%;
-  cursor: pointer;
 }
 .gallery figcaption {
   font-size: 13px;

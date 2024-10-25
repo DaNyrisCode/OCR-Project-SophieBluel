@@ -59,6 +59,10 @@ table {
 }
 
 // Main Styles
+.hidden {
+  display: none;
+}
+
 body {
   max-width: $max-width;
   margin: auto;
@@ -137,7 +141,6 @@ nav li {
       }
   }
 
-  
   & img {
     width: 19px;
     &:hover {
@@ -221,10 +224,8 @@ nav li {
   box-sizing: border-box;
   padding: 0 50px;
 
-
   img {
     width: 100%;
-    cursor: pointer;
   }
   figcaption {
     font-size: 13px;

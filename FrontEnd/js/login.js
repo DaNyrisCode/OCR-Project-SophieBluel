@@ -16,6 +16,6 @@ loginForm.addEventListener("submit", async (e) => {
             window.location.href = "./admin.html";
         }
     } catch (error) {
-        console.error("Erreur lors de la tentative de connexion :", error.message);
+        alert("Erreur lors de la tentative de connexion :", error.message);
     }
 });
